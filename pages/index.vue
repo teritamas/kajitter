@@ -16,7 +16,7 @@
             <a href="#" class="relative block">
               <img
                 alt="profil"
-                src="@/assets/img/toire.webp"
+                src="/img/toire.webp"
                 class="mx-auto object-cover rounded-full h-10 w-10"
               />
             </a>
@@ -34,7 +34,11 @@
     </ul>
   </div>
 
-  <PrimaryButton class="floating-button" label="＋" @click="postKaji" />
+  <PrimaryButton
+    class="floating-button"
+    label="＋"
+    @click="navigateToAddWork"
+  />
   <PrimaryButton label="投稿する" @click="navigateToAddWork" />
 </template>
 
@@ -55,25 +59,6 @@
   const fetchKajis = async () => {
     const { data } = await client.from("done_house_work").select("*");
     kajis.value = data;
-  };
-
-  const postKaji = async () => {
-    // 投稿処理
-
-    const { data, error } = await client.from("done_house_work").insert([
-      {
-        user_id: user.value?.id,
-        house_work_name: "洗濯",
-      } as never,
-    ]);
-
-    if (error) {
-      console.error(error);
-      return;
-    } else {
-      console.log("登録完了");
-      fetchKajis();
-    }
   };
 
   // relativeTimeプラグインを有効化
