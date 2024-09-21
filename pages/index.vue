@@ -33,7 +33,10 @@
       </li>
     </ul>
   </div>
+
   <PrimaryButton class="floating-button" label="＋" @click="postKaji" />
+  <PrimaryButton label="投稿する" @click="navigateToAddWork" />
+
 </template>
 
 <script setup lang="ts">
@@ -91,6 +94,11 @@ const relativeTimeInMinutes = (time: string): string => {
     return `${diffHours} 時間前`; // 1時間以上の場合
   }
 };
+
+  const navigateToAddWork = () => {
+    navigateTo("/add-house-work");
+  };
+
 </script>
 
 <style scoped>
