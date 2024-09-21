@@ -20,7 +20,7 @@
           </svg>
         </a>
         <a
-          href="#"
+          href="/dashboard"
           class="text-gray-400 transition-colors duration-200 hover:text-gray-800 dark:hover:text-200"
         >
           <svg
