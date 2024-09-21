@@ -12,6 +12,11 @@
             </span>
             をしました！
           </p>
+          <template v-if="kaji.kaji_comment">
+            <p class="text-gray-600 mt-2 text-sm">
+              頑張りポイント: {{ kaji.kaji_comment }}
+            </p>
+          </template>
           <div class="flex items-center mt-4">
             <a href="#" class="relative block">
               <img
@@ -61,6 +66,7 @@
         `
         house_work_name,
         created_at,
+        kaji_comment,
         profiles (
         *
         )`

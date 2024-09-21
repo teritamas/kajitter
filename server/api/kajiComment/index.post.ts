@@ -11,7 +11,7 @@ export default defineEventHandler(async (event) => {
 ${body.completeKajiName}
 過去行った家事の内容は以下の通りです。
 ${body.doneHouseWorkDataStr}
-以下の観点で内容を確認し、50文字以内で具体的、ユーモア含めて褒めてください
+以下の観点で内容を確認し、100文字以内で具体的、ユーモア含めて褒めてください
 - 今実施した家事を中心に褒めてください
 - 今日初めての家事かどうか
 - 家事と家事の間隔が短い時は頑張っている
