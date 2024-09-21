@@ -6,13 +6,37 @@
       </a>
     </div>
     <div class="block lg:hidden">
-      <a href="#" class="relative block">
+      <a href="#" class="relative block" @click="toggleVisibility">
         <img
           :src="userIcon"
           alt="profile"
           class="mx-auto object-cover rounded-full h-10 w-10"
         />
       </a>
+      <div
+        class="absolute z-10 top-12 right-1 w-[200] mt-1 bg-white rounded-md shadow-lg"
+      >
+        <ul
+          v-if="isVisible"
+          tabindex="-1"
+          role="listbox"
+          aria-labelledby="listbox-label"
+          aria-activedescendant="listbox-item-3"
+          class="py-1 overflow-auto text-base rounded-md max-h-56 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
+        >
+          <li
+            id="listbox-item-2"
+            role="option"
+            class="relative py-2 pl-3 text-gray-900 cursor-default select-none hover:bg-indigo-500 hover:text-white pr-9"
+          >
+            <div class="flex items-center">
+              <button class="block ml-3 font-normal truncate" @click="signOut">
+                サインアウト
+              </button>
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
     <div class="hidden w-full navbar-menu lg:order-1 lg:block lg:w-2/5"></div>
     <div
@@ -38,7 +62,9 @@
               </span>
             </span>
           </button>
-          <div class="absolute z-10 w-full mt-1 bg-white rounded-md shadow-lg">
+          <div
+            class="absolute z-10 top-12 right-6 w-[200] mt-1 bg-white rounded-md shadow-lg"
+          >
             <ul
               v-if="isVisible"
               tabindex="-1"
@@ -70,26 +96,26 @@
 </template>
 
 <script setup lang="ts">
-const emit = defineEmits(["signOut"]);
+  const emit = defineEmits(["signOut"]);
 
-const props = defineProps({
-  userName: {
-    type: String,
-    required: true,
-  },
-  userIcon: {
-    type: String,
-    required: true,
-  },
-});
-const isVisible = ref(false); // 表示・非表示の状態管理
+  const props = defineProps({
+    userName: {
+      type: String,
+      required: true,
+    },
+    userIcon: {
+      type: String,
+      required: true,
+    },
+  });
+  const isVisible = ref(false); // 表示・非表示の状態管理
 
-// トグル関数
-const toggleVisibility = () => {
-  isVisible.value = !isVisible.value; // 表示・非表示を切り替え
-};
+  // トグル関数
+  const toggleVisibility = () => {
+    isVisible.value = !isVisible.value; // 表示・非表示を切り替え
+  };
 
-const signOut = () => {
-  emit("signOut");
-};
+  const signOut = () => {
+    emit("signOut");
+  };
 </script>
