@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import dayjs from 'dayjs';
+
 
   // TODO: DBから目標は取得したい
   const houseWorkList = [
@@ -52,7 +54,9 @@
           avatar_url
         )
         `
-      );
+      )
+      // 本日の家事のみを取得
+      .gte("created_at", dayjs().startOf("day").toISOString());
     if (!data) {
       return;
     }
