@@ -8,8 +8,8 @@
     <div class="block lg:hidden">
       <a href="#" class="relative block">
         <img
-          alt="profil"
-          src="/img/ryouri.webp"
+          :src="userIcon"
+          alt="profile"
           class="mx-auto object-cover rounded-full h-10 w-10"
         />
       </a>
@@ -30,7 +30,7 @@
           >
             <span class="flex items-center">
               <img
-                src="/img/ryouri.webp"
+                :src="userIcon"
                 alt="person"
                 class="flex-shrink-0 w-6 h-6 rounded-full"
               />
@@ -70,38 +70,31 @@
   </nav>
 </template>
 
-<script lang="ts">
-  import { defineComponent, ref, defineEmits } from "vue";
+<script setup lang="ts">
+  const emit = defineEmits(["signOut"]);
 
-  export default defineComponent({
-    name: "app-header", // コンポーネント名を指定
-    props: {
-      userName: {
-        type: String,
-        required: true,
-      },
-      isAuthenticated: {
-        type: String,
-        required: true,
-      },
+  const props = defineProps({
+    userName: {
+      type: String,
+      required: true,
     },
-    setup(props, { emit }) {
-      const isVisible = ref(false); // 表示・非表示の状態管理
-
-      // トグル関数
-      const toggleVisibility = () => {
-        isVisible.value = !isVisible.value; // 表示・非表示を切り替え
-      };
-
-      const signOut = () => {
-        emit("signOut");
-      };
-
-      return {
-        isVisible,
-        toggleVisibility,
-        signOut,
-      };
+    userIcon: {
+      type: String,
+      required: true,
+    },
+    isAuthenticated: {
+      type: String,
+      required: true,
     },
   });
+  const isVisible = ref(false); // 表示・非表示の状態管理
+
+  // トグル関数
+  const toggleVisibility = () => {
+    isVisible.value = !isVisible.value; // 表示・非表示を切り替え
+  };
+
+  const signOut = () => {
+    emit("signOut");
+  };
 </script>
