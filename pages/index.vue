@@ -45,23 +45,18 @@
 </template>
 
 <script setup lang="ts">
-// supabaseからログアウト
-const client = useSupabaseClient();
-const user = useSupabaseUser();
-
-const signOut = async () => {
-  await client.auth.signOut();
-  window.location.href = "/login";
-};
-
-  const userName = user.value?.user_metadata.user_name;
-
-  var kajis = ref([]) as any;
+  // supabaseからログアウト
+  const client = useSupabaseClient();
+  const user = useSupabaseUser();
 
   const signOut = async () => {
     await client.auth.signOut();
     window.location.href = "/login";
   };
+
+  const userName = user.value?.user_metadata.user_name;
+
+  var kajis = ref([]) as any;
 
   // 初期表示時に家事一覧を取得
   onMounted(() => {
