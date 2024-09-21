@@ -16,28 +16,39 @@
   const client = useSupabaseClient();
   const user = useSupabaseUser();
 
+  const showModal = ref(false);
+  const isPostCompleted = ref(true);
+  const kajiComment = ref("");
+
   const postKaji = async (kajiName: string) => {
+    // モーダルを表示
+    showModal.value = true;
+    isPostCompleted.value = false;
     // 昨日までの自分が実施した家事の数を取得
     const doneHouseWorks = await getDoneHouseWork();
 
     // 家事のコメントを取得
-    const kajiComment = await getKajiComment(kajiName, doneHouseWorks);
+    kajiComment.value = (await getKajiComment(
+      kajiName,
+      doneHouseWorks
+    )) as string;
 
     // 投稿処理
     const { error } = await client.from("done_house_work").insert([
       {
         user_id: user.value?.id,
         house_work_name: kajiName,
-        kaji_comment: kajiComment,
+        kaji_comment: kajiComment.value,
       } as never,
     ]);
+
+    isPostCompleted.value = true;
 
     if (error) {
       console.error(error);
       return;
     } else {
       console.log("登録完了");
-      navigateTo("/");
     }
   };
 
@@ -82,6 +93,11 @@
       )
       .join("\n");
   };
+
+  const navigateToTimeline = (path: string) => {
+    showModal.value = false;
+    navigateTo("/");
+  };
 </script>
 
 <template>
@@ -97,4 +113,22 @@
       ></HouseWorkCard>
     </div>
   </div>
+  <Teleport to="body">
+    <modal :show="showModal" @close="showModal = false">
+      <template #header>
+        <h1 class="text-2xl font-semibold mt-4 mx-auto">お疲れ様でした！</h1>
+      </template>
+      <template #body>
+        {{ isPostCompleted ? kajiComment : "登録中" }}
+      </template>
+      <template #footer>
+        <PrimaryButton
+          v-if="isPostCompleted"
+          :label="'タイムラインに戻る'"
+          @click="navigateToTimeline"
+        >
+        </PrimaryButton>
+      </template>
+    </modal>
+  </Teleport>
 </template>
