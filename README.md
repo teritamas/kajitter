@@ -14,6 +14,15 @@
 
 ![構成図](docs/arch.png)
 
+### 技術スタック
+
+| 技術     | 利用用途                         | URL                              |
+| -------- | -------------------------------- | -------------------------------- |
+| Nuxt.js  | フロント/バックエンド            | [Nuxt.js](https://nuxtjs.org/)   |
+| Vercel   | サーバーのホスティング           | [Vercel](https://vercel.com/)    |
+| Supabase | データベースの永続化とユーザ認証 | [Supabase](https://supabase.io/) |
+| Open AI  | 家事の応援コメントを生成         | [Open AI](https://openai.com/)   |
+
 ## Quick Start
 
 必要ライブラリをインストールします。
