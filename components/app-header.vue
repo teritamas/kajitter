@@ -2,7 +2,7 @@
   <nav class="flex flex-wrap items-center justify-between py-2 px-4 bg-white">
     <div class="w-auto lg:order-2 lg:w-1/5 lg:text-center">
       <a class="text-xl font-semibold text-gray-800 font-heading" href="#">
-        カジッター
+        Kajitter
       </a>
     </div>
     <div class="block lg:hidden">
@@ -23,7 +23,6 @@
       >
         <div class="relative mt-1">
           <button
-            v-if="isAuthenticated"
             type="button"
             class="relative w-full py-3 pl-3 pr-10 text-left bg-white rounded-md cursor-default hover:cursor-pointer focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             @click="toggleVisibility"
@@ -71,30 +70,26 @@
 </template>
 
 <script setup lang="ts">
-  const emit = defineEmits(["signOut"]);
+const emit = defineEmits(["signOut"]);
 
-  const props = defineProps({
-    userName: {
-      type: String,
-      required: true,
-    },
-    userIcon: {
-      type: String,
-      required: true,
-    },
-    isAuthenticated: {
-      type: String,
-      required: true,
-    },
-  });
-  const isVisible = ref(false); // 表示・非表示の状態管理
+const props = defineProps({
+  userName: {
+    type: String,
+    required: true,
+  },
+  userIcon: {
+    type: String,
+    required: true,
+  },
+});
+const isVisible = ref(false); // 表示・非表示の状態管理
 
-  // トグル関数
-  const toggleVisibility = () => {
-    isVisible.value = !isVisible.value; // 表示・非表示を切り替え
-  };
+// トグル関数
+const toggleVisibility = () => {
+  isVisible.value = !isVisible.value; // 表示・非表示を切り替え
+};
 
-  const signOut = () => {
-    emit("signOut");
-  };
+const signOut = () => {
+  emit("signOut");
+};
 </script>

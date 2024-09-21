@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const houseWorkList = [
-  { label: "今日やった洗濯", imageSrc: "/img/souhuki.png" },
+  { label: "今日やった洗濯", imageSrc: "/img/sentaku.png" },
   { label: "今日キレイになった風呂", imageSrc: "/img/hurosouji.webp" },
   { label: "今日キレイになった部屋", imageSrc: "/img/heyasouji.webp" },
   { label: "今日キレイになった食器", imageSrc: "/img/saraarai.webp" },
