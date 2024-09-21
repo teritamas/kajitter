@@ -3,32 +3,32 @@
   // TODO: DBから目標は取得したい
   const houseWorkList = [
     {
-      label: "今日行われた洗濯の回数",
+      label: "行われた洗濯の回数",
       house_work_name: "洗濯",
       imageSrc: "/img/souhuki.png",
     },
     {
-      label: "今日キレイになった風呂の数",
+      label: "キレイになった風呂の数",
       house_work_name: "風呂掃除",
       imageSrc: "/img/hurosouji.webp",
     },
     {
-      label: "今日キレイになった部屋数",
+      label: "キレイになった部屋数",
       house_work_name: "部屋掃除",
       imageSrc: "/img/heyasouji.webp",
     },
     {
-      label: "今日キレイになった食器の数",
+      label: "キレイになった食器の数",
       house_work_name: "食器洗い",
       imageSrc: "/img/saraarai.webp",
     },
     {
-      label: "今日キレイになったトイレの数",
+      label: "キレイになったトイレの数",
       house_work_name: "トイレ掃除",
       imageSrc: "/img/toire.webp",
     },
     {
-      label: "今日つくられた料理の数",
+      label: "つくられた料理の数",
       house_work_name: "料理",
       imageSrc: "/img/ryouri.webp",
     },
@@ -91,9 +91,12 @@
 </script>
 
 <template>
+  <div class="flex flex-col items-center">
+    <h1 class="text-2xl font-semibold mt-4">本日のがんばり</h1>
+  </div>
   <div 
     class="mx-4"
-  v-for="work in houseWorkList" :key="work.label">
+    v-for="work in houseWorkList" :key="work.label">
     <div
       class="relative w-full max-w-lg mx-auto my-5 p-4 overflow-hidden bg-white shadow-lg"
     >
