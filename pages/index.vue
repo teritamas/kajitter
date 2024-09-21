@@ -2,11 +2,9 @@
   <div>
     <ul>
       <li v-for="kaji in kajis" :key="kaji.id">
-        <div
-          class="bg-white dark:bg-gray-800 w-72 shadow-lg mx-auto rounded-xl p-4 my-1"
-        >
-          <p class="text-gray-600 dark:text-white">
-            {{ kaji.user_id }} さんが
+        <div class="bg-white w-72 shadow-lg mx-auto rounded-xl p-4 my-1">
+          <p class="text-gray-600">
+            {{ kaji.profiles.name }} さんが
             <span class="text-lg font-bold text-indigo-500">
               {{ kaji.house_work_name }}
             </span>
@@ -15,16 +13,16 @@
           <div class="flex items-center mt-4">
             <a href="#" class="relative block">
               <img
-                alt="profil"
-                src="/img/toire.webp"
+                :src="kaji.profiles.avatar_url"
+                alt="profile"
                 class="mx-auto object-cover rounded-full h-10 w-10"
               />
             </a>
             <div class="flex flex-col justify-between ml-2">
               <span class="text-sm font-semibold text-indigo-500">
-                {{ kaji.user_id }}
+                {{ kaji.profiles.name }}
               </span>
-              <span class="flex items-center text-xs dark:text-gray-400">
+              <span class="flex items-center text-xs">
                 {{ relativeTimeInMinutes(kaji.created_at) }}
               </span>
             </div>
@@ -39,13 +37,11 @@
     label="＋"
     @click="navigateToAddWork"
   />
-  <PrimaryButton label="投稿する" @click="navigateToAddWork" />
 </template>
 
 <script setup lang="ts">
   // supabaseからログアウト
   const client = useSupabaseClient();
-  const user = useSupabaseUser();
   import dayjs from "dayjs";
   import relativeTimePlugin from "dayjs/plugin/relativeTime";
 
@@ -57,8 +53,19 @@
   });
 
   const fetchKajis = async () => {
-    const { data } = await client.from("done_house_work").select("*");
+    const { data } = await client
+      .from("done_house_work")
+      .select(
+        `
+        house_work_name,
+        created_at,
+        profiles (
+        *
+        )`
+      )
+      .order("created_at", { ascending: false });
     kajis.value = data;
+    console.log(data);
   };
 
   // relativeTimeプラグインを有効化
