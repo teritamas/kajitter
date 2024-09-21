@@ -15,6 +15,7 @@
     "nuxt": "^3.13.0",
     "openai": "^4.63.0",
     "vue": "latest",
+    "vue-confetti-explosion": "^1.0.2",
     "vue-router": "latest"
   },
   "devDependencies": {

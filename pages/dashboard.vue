@@ -92,7 +92,7 @@
 
 <template>
   <div class="flex flex-col items-center">
-    <h1 class="text-2xl font-semibold mt-4">本日のがんばり</h1>
+    <h1 class="text-2xl font-semibold mt-4">今日のみんなのがんばり👏</h1>
   </div>
   <div 
     class="mx-4"
@@ -103,7 +103,7 @@
       <img
         :src="work.imageSrc"
         alt="btc logo"
-        class="absolute w-24 h-24 opacity-50 -top-6 -right-6 md:-right-4"
+        class="absolute w-24 h-24 opacity-50 top-1 right-1"
       />
       <div class="w-full">
         <p class="mb-1 text-xl font-medium text-gray-800">
