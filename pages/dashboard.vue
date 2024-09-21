@@ -124,10 +124,10 @@
           <p v-else>0%</p>
         </div>
         <div class="w-full h-2 mt-3 mb-6 bg-gray-400 rounded-full">
-          <div
+            <div
             v-if="kajiStatistics[work.house_work_name]"
             class="h-full text-center text-xs text-white bg-green-400 rounded-full"
-            :class="`w-[${kajiStatistics[work.house_work_name]!.count * 10}%]`"
+            :style="{ width: `${kajiStatistics[work.house_work_name]!.count * 10}%` }"
           ></div>
         </div>
         <div class="flex items-center">
