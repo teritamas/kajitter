@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import dayjs from 'dayjs';
-
-
+  import dayjs from 'dayjs';
   // TODO: DBから目標は取得したい
   const houseWorkList = [
     {

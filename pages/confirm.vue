@@ -1,11 +1,10 @@
 <script setup lang="ts">
   const user = useSupabaseUser();
-
   watch(
     user,
     () => {
       if (user.value) {
-        // Redirect to protected page
+        // トップページにリダイレクト
         return navigateTo("/");
       }
     },

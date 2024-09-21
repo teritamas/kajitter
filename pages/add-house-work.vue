@@ -1,4 +1,5 @@
 <script setup lang="ts">
+  // TODO: DBから取得する
   const houseWorkList = [
     { label: "洗濯", imageSrc: "/img/sentaku.png" },
     { label: "風呂掃除", imageSrc: "/img/hurosouji.webp" },
