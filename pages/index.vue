@@ -113,7 +113,7 @@ const navigateToAddWork = () => {
 .floating-button {
   position: fixed; /* 固定 */
   bottom: 70px; /* 下からの距離 */
-  right: 20px; /* 右からの距離 */
+  right: 60px; /* 右からの距離 */
   color: white; /* ボタンの文字色 */
   border: none; /* ボーダーをなしに */
   border-radius: 50%; /* 丸いボタンに */

@@ -133,7 +133,9 @@ const navigateToTimeline = (path: string) => {
             :particleSize="8"
             :particleCount="300"
           />
-          <h1 class="text-2xl font-semibold mt-4 mx-auto">お疲れ様でした！</h1>
+          <h1 class="text-2xl font-semibold mt-4 mx-auto">
+            お疲れ様でした！👏
+          </h1>
         </template>
         <template #body>
           {{ isPostCompleted ? kajiComment : "登録中" }}

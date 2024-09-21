@@ -96,26 +96,26 @@
 </template>
 
 <script setup lang="ts">
-  const emit = defineEmits(["signOut"]);
+const emit = defineEmits(["signOut"]);
 
-  const props = defineProps({
-    userName: {
-      type: String,
-      required: true,
-    },
-    userIcon: {
-      type: String,
-      required: true,
-    },
-  });
-  const isVisible = ref(false); // 表示・非表示の状態管理
+const props = defineProps({
+  userName: {
+    type: String,
+    required: true,
+  },
+  userIcon: {
+    type: String,
+    required: true,
+  },
+});
+const isVisible = ref(false); // 表示・非表示の状態管理
 
-  // トグル関数
-  const toggleVisibility = () => {
-    isVisible.value = !isVisible.value; // 表示・非表示を切り替え
-  };
+// トグル関数
+const toggleVisibility = () => {
+  isVisible.value = !isVisible.value; // 表示・非表示を切り替え
+};
 
-  const signOut = () => {
-    emit("signOut");
-  };
+const signOut = () => {
+  emit("signOut");
+};
 </script>

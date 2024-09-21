@@ -1,27 +1,27 @@
 <script setup lang="ts">
-  const runtimeConfig = useRuntimeConfig();
-  const supabase = useSupabaseClient();
+const runtimeConfig = useRuntimeConfig();
+const supabase = useSupabaseClient();
 
-  const redirectUrl = `${runtimeConfig.public.redirectUrl as string}`;
+const redirectUrl = `${runtimeConfig.public.redirectUrl as string}`;
 
-  const signInWithGithub = async () => {
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: "github",
-      options: {
-        redirectTo: redirectUrl,
-      },
-    });
-    if (error) console.log(error);
-  };
-  const signInWithGoogle = async () => {
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: "google",
-      options: {
-        redirectTo: redirectUrl,
-      },
-    });
-    if (error) console.log(error);
-  };
+const signInWithGithub = async () => {
+  const { error } = await supabase.auth.signInWithOAuth({
+    provider: "github",
+    options: {
+      redirectTo: redirectUrl,
+    },
+  });
+  if (error) console.log(error);
+};
+const signInWithGoogle = async () => {
+  const { error } = await supabase.auth.signInWithOAuth({
+    provider: "google",
+    options: {
+      redirectTo: redirectUrl,
+    },
+  });
+  if (error) console.log(error);
+};
 </script>
 <template>
   <div
@@ -33,9 +33,9 @@
       かじったー
     </h1>
 
-    <div
-      class="self-center mb-6 text-xl font-light text-gray-600 sm:text-2xl"
-    ></div>
+    <div class="self-center font-light text-gray-600">
+      みんなの家事がつながる場所🧹🧺🗾
+    </div>
 
     <div class="flex gap-4 item-center justify-center my-4">
       <button
