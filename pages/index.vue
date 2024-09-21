@@ -8,7 +8,7 @@
             <span class="text-lg font-bold text-indigo-500">
               {{ kaji.house_work_name }}
             </span>
-            をしました！ 累計三回目の {{ kaji.house_work_name }} です！
+            をしました！
           </p>
           <div class="flex items-center mt-4">
             <a href="#" class="relative block">

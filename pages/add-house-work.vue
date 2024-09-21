@@ -12,7 +12,6 @@
   const user = useSupabaseUser();
   const postKaji = async (kajiName: string) => {
     // 投稿処理
-
     const { data, error } = await client.from("done_house_work").insert([
       {
         user_id: user.value?.id,
