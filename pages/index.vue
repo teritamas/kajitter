@@ -1,8 +1,10 @@
 <template>
-  <div>
-    <ul>
+  <div class="h-full">
+    <ul class="mx-4 my-1">
       <li v-for="kaji in kajis" :key="kaji.id">
-        <div class="bg-white w-72 shadow-lg mx-auto rounded-xl p-4 my-1">
+        <div
+          class="bg-white w-full max-w-[1200px] shadow-lg mx-auto rounded-xl p-4 my-1"
+        >
           <p class="text-gray-600">
             {{ kaji.profiles.name }} さんが
             <span class="text-lg font-bold text-indigo-500">
