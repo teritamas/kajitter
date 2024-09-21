@@ -89,7 +89,9 @@
 </script>
 
 <template>
-  <div v-for="work in houseWorkList" :key="work.label">
+  <div 
+    class="mx-4"
+  v-for="work in houseWorkList" :key="work.label">
     <div
       class="relative w-full max-w-lg mx-auto my-5 p-4 overflow-hidden bg-white shadow-lg"
     >
@@ -110,12 +112,17 @@
         </p>
         <p v-else class="text-5xl font-extrabold mb-2">0</p>
         <div class="flex items-center justify-between">
-          <p>Task progress</p>
-          <p>33%</p>
+          <p>目標まであと</p>
+          <p
+          v-if="kajiStatistics[work.house_work_name]"
+          >{{kajiStatistics[work.house_work_name]!.count * 10}}%</p>
+          <p v-else>0%</p>
         </div>
         <div class="w-full h-2 mt-3 mb-6 bg-gray-400 rounded-full">
           <div
-            class="w-1/3 h-full text-center text-xs text-white bg-green-400 rounded-full"
+            v-if="kajiStatistics[work.house_work_name]"
+            class="h-full text-center text-xs text-white bg-green-400 rounded-full"
+            :class="`w-[${kajiStatistics[work.house_work_name]!.count * 10}%]`"
           ></div>
         </div>
         <div class="flex items-center">
