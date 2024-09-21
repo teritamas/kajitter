@@ -32,7 +32,7 @@
 
 <template>
   <div class="flex flex-col items-center">
-    <h1 class="text-2xl font-semibold mt-4">家事一覧</h1>
+    <h1 class="text-2xl font-semibold mt-4">完了した家事を登録しよう！</h1>
     <div class="grid grid-cols-2 gap-4 mt-4">
       <HouseWorkCard
         v-for="work in houseWorkList"
