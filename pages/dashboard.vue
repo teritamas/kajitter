@@ -1,4 +1,5 @@
 <script setup lang="ts">
+
   const houseWorkList = [
     {
       label: "今日やった洗濯",
