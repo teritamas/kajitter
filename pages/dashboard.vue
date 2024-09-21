@@ -1,33 +1,34 @@
 <script setup lang="ts">
 
+  // TODO: DBから目標は取得したい
   const houseWorkList = [
     {
-      label: "今日やった洗濯",
+      label: "今日行われた洗濯の回数",
       house_work_name: "洗濯",
       imageSrc: "/img/souhuki.png",
     },
     {
-      label: "今日キレイになった風呂",
+      label: "今日キレイになった風呂の数",
       house_work_name: "風呂掃除",
       imageSrc: "/img/hurosouji.webp",
     },
     {
-      label: "今日キレイになった部屋",
+      label: "今日キレイになった部屋数",
       house_work_name: "部屋掃除",
       imageSrc: "/img/heyasouji.webp",
     },
     {
-      label: "今日キレイになった食器",
-      house_work_name: "皿洗い",
+      label: "今日キレイになった食器の数",
+      house_work_name: "食器洗い",
       imageSrc: "/img/saraarai.webp",
     },
     {
-      label: "今日キレイになったトイレ",
+      label: "今日キレイになったトイレの数",
       house_work_name: "トイレ掃除",
       imageSrc: "/img/toire.webp",
     },
     {
-      label: "今日つくった料理",
+      label: "今日つくられた料理の数",
       house_work_name: "料理",
       imageSrc: "/img/ryouri.webp",
     },
@@ -69,7 +70,6 @@
       }
       return acc;
     }, {});
-
     kajiStatistics.value = result;
   };
 
