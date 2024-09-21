@@ -1,9 +1,9 @@
 <template>
-  <div class="h-full">
-    <ul class="mx-4 my-1">
+  <div class="h-full my-1">
+    <ul class="mx-4">
       <li v-for="kaji in kajis" :key="kaji.id">
         <div
-          class="bg-white w-full max-w-[1200px] shadow-lg mx-auto rounded-xl p-4 my-1"
+          class="bg-white w-full max-w-lg shadow-lg mx-auto rounded-xl p-4 my-1"
         >
           <p class="text-gray-600">
             {{ kaji.profiles.name }} さんが

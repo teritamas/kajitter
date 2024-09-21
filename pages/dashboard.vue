@@ -81,12 +81,17 @@
       return ` + ${profiles.length - 4} more`;
     }
   };
+
+  // 最大4つまでのアイコンを表示
+  const getProfileAvatarUrl = (profiles: any) => {
+    return profiles.slice(0, 4);
+  };
 </script>
 
 <template>
   <div v-for="work in houseWorkList" :key="work.label">
     <div
-      class="relative mx-auto my-5 max-w-xs p-4 overflow-hidden bg-white shadow-lg"
+      class="relative w-full max-w-lg mx-auto my-5 p-4 overflow-hidden bg-white shadow-lg"
     >
       <img
         :src="work.imageSrc"
@@ -117,7 +122,7 @@
           <template v-if="kajiStatistics[work.house_work_name]">
             <div class="flex -space-x-2">
               <template
-                v-for="profile in kajiStatistics[work.house_work_name]!.profiles"
+                v-for="profile in getProfileAvatarUrl(kajiStatistics[work.house_work_name]!.profiles)"
               >
                 <a href="#" class="">
                   <img
