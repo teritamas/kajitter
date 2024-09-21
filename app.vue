@@ -14,12 +14,11 @@
 
 <script setup lang="ts">
   const client = useSupabaseClient();
-  const user = useSupabaseUser();
 
   const userName = ref("");
   const userIcon = ref("");
   // userNameの有無に基づいて認証状態を判別するフラグ
-  const isAuthenticated = ref(false);
+  const isAuthenticated = computed(() => !!userName.value);
 
   // 画面読み込み時に認証状態を確認
   onMounted(async () => {
@@ -32,7 +31,6 @@
     }
 
     // 認証されている場合はユーザー情報を取得
-    isAuthenticated.value = true;
     const userId = user.data.user?.id;
     const { data } = (await client
       .from("profiles")
