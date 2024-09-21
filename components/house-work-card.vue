@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bg-white w-[160px] h-[160px] shadow-lg mx-auto rounded-xl p-4 hover:scale-105 transition-transform flex flex-col items-center justify-center"
+    class="bg-white w-[160px] h-[160px] shadow-lg mx-auto rounded-xl p-4 hover:scale-105 hover:cursor-pointer transition-transform flex flex-col items-center justify-center"
     @click="handleClick"
   >
     <p class="text-gray-600">
@@ -13,33 +13,33 @@
 </template>
 
 <script setup lang="ts">
-  import { defineProps } from "vue";
+import { defineProps } from "vue";
 
-  // クリックされた時に親にlabelをわたす
-  const emit = defineEmits(["click"]);
+// クリックされた時に親にlabelをわたす
+const emit = defineEmits(["click"]);
 
-  const props = defineProps({
-    label: {
-      type: String,
-      required: true,
-    },
-    imageSrc: {
-      type: String,
-      required: true,
-    },
-    altText: {
-      type: String,
-      default: "profile",
-    },
-  });
+const props = defineProps({
+  label: {
+    type: String,
+    required: true,
+  },
+  imageSrc: {
+    type: String,
+    required: true,
+  },
+  altText: {
+    type: String,
+    default: "profile",
+  },
+});
 
-  const handleClick = () => {
-    emit("click", props.label);
-  };
+const handleClick = () => {
+  emit("click", props.label);
+};
 </script>
 
 <style scoped>
-  .hover\:scale-105:hover {
-    transform: scale(1.05);
-  }
+.hover\:scale-105:hover {
+  transform: scale(1.05);
+}
 </style>
