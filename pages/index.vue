@@ -1,8 +1,8 @@
 <template>
-  <h1>ログインユーザ: {{ user!.user_metadata.user_name }}</h1>
+  <h1 class="font-bold">ログインユーザ: {{ user!.user_metadata.user_name }}</h1>
 
   <div>
-    <button @click="signOut">サインアウト</button>
+    <primary-button label="サインアウト" @click="signOut"></primary-button>
   </div>
 </template>
 

@@ -16,6 +16,9 @@
 </script>
 <template>
   <div>
-    <button @click="signInWithOtp">Github でログイン</button>
+    <primary-button
+      label="Githubでログイン"
+      @click="signInWithOtp"
+    ></primary-button>
   </div>
 </template>
