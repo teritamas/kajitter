@@ -1,18 +1,18 @@
 <script setup lang="ts">
-  const runtimeConfig = useRuntimeConfig();
-  const supabase = useSupabaseClient();
+const runtimeConfig = useRuntimeConfig();
+const supabase = useSupabaseClient();
 
-  const redirectUrl = `${runtimeConfig.public.redirectUrl as string}`;
+const redirectUrl = `${runtimeConfig.public.redirectUrl as string}`;
 
-  const signInWithOtp = async () => {
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: "github",
-      options: {
-        redirectTo: redirectUrl,
-      },
-    });
-    if (error) console.log(error);
-  };
+const signInWithOtp = async () => {
+  const { error } = await supabase.auth.signInWithOAuth({
+    provider: "github",
+    options: {
+      redirectTo: redirectUrl,
+    },
+  });
+  if (error) console.log(error);
+};
 </script>
 <template>
   <div>
