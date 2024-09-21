@@ -10,32 +10,7 @@
   </div>
 
   <div>
-    <PrimaryButton label="投稿する" @click="postKaji"></PrimaryButton>
-  </div>
-
-  <div class="bg-white dark:bg-gray-800 w-72 shadow-lg mx-auto rounded-xl p-4">
-    <p class="text-gray-600 dark:text-white">
-      <span class="text-lg font-bold text-indigo-500"> “ </span>
-      To get social media testimonials like these, keep your customers engaged
-      with your social media accounts by posting regularly yourself
-      <span class="text-lg font-bold text-indigo-500"> ” </span>
-    </p>
-    <div class="flex items-center mt-4">
-      <a href="#" class="relative block">
-        <img
-          alt="profil"
-          src="@"
-          class="mx-auto object-cover rounded-full h-10 w-10"
-        />
-      </a>
-      <div class="flex flex-col justify-between ml-2">
-        <span class="text-sm font-semibold text-indigo-500"> Jean Miguel </span>
-        <span class="flex items-center text-xs dark:text-gray-400">
-          User of Tail-Kit
-          <img src="/icons/rocket.svg" class="w-4 h-4 ml-2" />
-        </span>
-      </div>
-    </div>
+    <PrimaryButton label="投稿する" @click="navigateToAddWork"></PrimaryButton>
   </div>
 
   <div>
@@ -45,7 +20,6 @@
 </template>
 
 <script setup lang="ts">
-  // supabaseからログアウト
   const client = useSupabaseClient();
   const user = useSupabaseUser();
 
@@ -68,22 +42,7 @@
     kajis.value = data;
   };
 
-  const postKaji = async () => {
-    // 投稿処理
-
-    const { data, error } = await client.from("done_house_work").insert([
-      {
-        user_id: user.value?.id,
-        house_work_name: "洗濯",
-      } as never,
-    ]);
-
-    if (error) {
-      console.error(error);
-      return;
-    } else {
-      console.log("登録完了");
-      fetchKajis();
-    }
+  const navigateToAddWork = () => {
+    navigateTo("/add-house-work");
   };
 </script>
