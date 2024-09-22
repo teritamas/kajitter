@@ -99,23 +99,23 @@ const getProfileAvatarUrl = (profiles: any) => {
 // レベルを取得
 const getNowLevel = (count: number, levelThreshold: number[]) => {
   if (count < levelThreshold[0]) {
-    return "初級";
+    return "スタートサポーター";
   } else if (count < levelThreshold[1]) {
-    return "中級";
+    return "ブロンズクリーナー";
   } else if (count < levelThreshold[2]) {
-    return "上級";
+    return "シルバーアシスタント";
   }
-  return "マスター";
+  return "ゴールドマスター";
 };
 
 // 次のレベルを取得
 const getNextLevel = (count: number, levelThreshold: number[]) => {
   if (count < levelThreshold[0]) {
-    return "中級";
+    return "ブロンズクリーナー";
   } else if (count < levelThreshold[1]) {
-    return "上級";
+    return "シルバーアシスタント";
   } else if (count < levelThreshold[2]) {
-    return "マスター";
+    return "ゴールドマスター";
   } else {
     return "";
   }
@@ -216,7 +216,6 @@ const percentage = (count: number, levelThreshold: number[]) => {
                     )
                   }}回
                 </span>
-                の家事が必要！
               </p>
             </div>
           </div>
@@ -224,7 +223,7 @@ const percentage = (count: number, levelThreshold: number[]) => {
           <div class="w-full h-2 mt-3 mb-6 bg-gray-400 rounded-full">
             <div
               v-if="kajiStatistics[work.house_work_name]"
-              class="h-full text-center text-xs text-white bg-green-400 rounded-full"
+              class="h-full text-center text-xs text-white bg-indigo-500 rounded-full"
               :style="{ width: `${percentage(kajiStatistics[work.house_work_name]!.count, work.levelThreshold)}` }"
             ></div>
           </div>
