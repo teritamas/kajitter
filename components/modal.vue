@@ -1,7 +1,7 @@
 <script setup>
-const props = defineProps({
-  show: Boolean,
-});
+  const props = defineProps({
+    show: Boolean,
+  });
 </script>
 
 <template>
@@ -25,55 +25,55 @@ const props = defineProps({
 </template>
 
 <style>
-.modal-mask {
-  position: fixed;
-  z-index: 9998;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  transition: opacity 0.3s ease;
-}
+  .modal-mask {
+    position: fixed;
+    z-index: 9998;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    transition: opacity 0.3s ease;
+  }
 
-.modal-container {
-  width: 300px;
-  margin: auto;
-  padding: 20px 30px;
-  background-color: #fff;
-  border-radius: 2px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
-  transition: all 0.3s ease;
-  background-image: url("/public/img/modal-bg-sp.png");
-  background-attachment: fixed;
-  background-size: 100% auto;
-}
+  .modal-container {
+    width: 300px;
+    margin: auto;
+    padding: 20px 30px;
+    background-color: #fff;
+    border-radius: 2px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
+    transition: all 0.3s ease;
+    background-image: url("/public/img/modal-bg-sp.png");
+    background-attachment: fixed;
+    background-size: 100% auto;
+  }
 
-.modal-header h3 {
-  margin-top: 0;
-  color: #42b983;
-}
+  .modal-header h3 {
+    margin-top: 0;
+    color: #42b983;
+  }
 
-.modal-body {
-  margin: 20px 0;
-}
+  .modal-body {
+    margin: 20px 0;
+  }
 
-.modal-default-button {
-  float: right;
-}
+  .modal-default-button {
+    float: right;
+  }
 
-.modal-enter-from {
-  opacity: 0;
-}
+  .modal-enter-from {
+    opacity: 0;
+  }
 
-.modal-leave-to {
-  opacity: 0;
-}
+  .modal-leave-to {
+    opacity: 0;
+  }
 
-.modal-enter-from .modal-container,
-.modal-leave-to .modal-container {
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
-}
+  .modal-enter-from .modal-container,
+  .modal-leave-to .modal-container {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
 </style>

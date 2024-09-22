@@ -13,33 +13,33 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from "vue";
+  import { defineProps } from "vue";
 
-// クリックされた時に親にlabelをわたす
-const emit = defineEmits(["click"]);
+  // クリックされた時に親にlabelをわたす
+  const emit = defineEmits(["click"]);
 
-const props = defineProps({
-  label: {
-    type: String,
-    required: true,
-  },
-  imageSrc: {
-    type: String,
-    required: true,
-  },
-  altText: {
-    type: String,
-    default: "profile",
-  },
-});
+  const props = defineProps({
+    label: {
+      type: String,
+      required: true,
+    },
+    imageSrc: {
+      type: String,
+      required: true,
+    },
+    altText: {
+      type: String,
+      default: "profile",
+    },
+  });
 
-const handleClick = () => {
-  emit("click", props.label);
-};
+  const handleClick = () => {
+    emit("click", props.label);
+  };
 </script>
 
 <style scoped>
-.hover\:scale-105:hover {
-  transform: scale(1.05);
-}
+  .hover\:scale-105:hover {
+    transform: scale(1.05);
+  }
 </style>
