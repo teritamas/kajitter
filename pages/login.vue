@@ -22,6 +22,14 @@
     });
     if (error) console.log(error);
   };
+
+  // ログイン済みの場合はリダイレクト
+  onMounted(async () => {
+    const { data } = await supabase.auth.getSession();
+    if (data) {
+      navigateTo("/");
+    }
+  });
 </script>
 <template>
   <div
