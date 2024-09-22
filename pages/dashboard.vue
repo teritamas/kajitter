@@ -1,157 +1,144 @@
 <script setup lang="ts">
-import dayjs from "dayjs";
-// TODO: DBから目標は取得したい
-const houseWorkList = [
-  {
-    label: "行われた洗濯の回数",
-    house_work_name: "洗濯",
-    imageSrc: "/img/sentaku.png",
-    levelThreshold: [3, 5, 10],
-  },
-  {
-    label: "キレイになった風呂の数",
-    house_work_name: "風呂掃除",
-    imageSrc: "/img/hurosouji.webp",
-    levelThreshold: [3, 5, 10],
-  },
-  {
-    label: "キレイになった部屋数",
-    house_work_name: "部屋掃除",
-    imageSrc: "/img/heyasouji.webp",
-    levelThreshold: [3, 5, 10],
-  },
-  {
-    label: "キレイになった食器の数",
-    house_work_name: "食器洗い",
-    imageSrc: "/img/saraarai.webp",
-    levelThreshold: [3, 5, 10],
-  },
-  {
-    label: "キレイになったトイレの数",
-    house_work_name: "トイレ掃除",
-    imageSrc: "/img/toire.webp",
-    levelThreshold: [3, 5, 10],
-  },
-  {
-    label: "つくられた料理の数",
-    house_work_name: "料理",
-    imageSrc: "/img/ryouri.webp",
-    levelThreshold: [3, 5, 10],
-  },
-];
+  import dayjs from "dayjs";
+  // TODO: DBから目標は取得したい
+  const houseWorkList = [
+    {
+      label: "行われた洗濯の回数",
+      house_work_name: "洗濯",
+      imageSrc: "/img/sentaku.png",
+      levelThreshold: [3, 5, 10],
+    },
+    {
+      label: "キレイになった風呂の数",
+      house_work_name: "風呂掃除",
+      imageSrc: "/img/hurosouji.webp",
+      levelThreshold: [3, 5, 10],
+    },
+    {
+      label: "キレイになった部屋数",
+      house_work_name: "部屋掃除",
+      imageSrc: "/img/heyasouji.webp",
+      levelThreshold: [3, 5, 10],
+    },
+    {
+      label: "キレイになった食器の数",
+      house_work_name: "食器洗い",
+      imageSrc: "/img/saraarai.webp",
+      levelThreshold: [3, 5, 10],
+    },
+    {
+      label: "キレイになったトイレの数",
+      house_work_name: "トイレ掃除",
+      imageSrc: "/img/toire.webp",
+      levelThreshold: [3, 5, 10],
+    },
+    {
+      label: "つくられた料理の数",
+      house_work_name: "料理",
+      imageSrc: "/img/ryouri.webp",
+      levelThreshold: [3, 5, 10],
+    },
+  ];
 
-const client = useSupabaseClient();
-const kajiStatistics = ref([]) as any;
-const showModal = ref(false);
+  const client = useSupabaseClient();
+  const kajiStatistics = ref([]) as any;
+  const showModal = ref(false);
 
-onMounted(() => {
-  fetchKajisStatistic();
-});
+  onMounted(() => {
+    fetchKajisStatistic();
+  });
 
-const fetchKajisStatistic = async () => {
-  const { data } = await client
-    .from("done_house_work")
-    // 今日実施された家事を取得し、house_work_nameごとにグループ化
-    .select(
-      `
+  const fetchKajisStatistic = async () => {
+    const { data } = await client
+      .from("done_house_work")
+      // 今日実施された家事を取得し、house_work_nameごとにグループ化
+      .select(
+        `
         house_work_name,
         profiles (
           avatar_url
         )
         `
-    )
-    // 本日の家事のみを取得
-    .gte("created_at", dayjs().startOf("day").toISOString());
-  if (!data) {
-    return;
-  }
-
-  // house_work_nameで集約
-  const result = data.reduce((acc: any, cur: any) => {
-    if (!acc[cur.house_work_name]) {
-      acc[cur.house_work_name] = {
-        count: 1,
-        profiles: [cur.profiles],
-      };
-    } else {
-      acc[cur.house_work_name].count++;
-      acc[cur.house_work_name].profiles.push(cur.profiles);
+      )
+      // 本日の家事のみを取得
+      .gte("created_at", dayjs().startOf("day").toISOString());
+    if (!data) {
+      return;
     }
-    return acc;
-  }, {});
-  kajiStatistics.value = result;
-};
 
-// アイコンの表示数の4を超えた場合、+4 moreと表示
-const getProfiles = (profiles: any) => {
-  if (profiles.length <= 4) {
-    return "";
-  } else {
-    return ` + ${profiles.length - 4} more`;
-  }
-};
+    // house_work_nameで集約
+    const result = data.reduce((acc: any, cur: any) => {
+      if (!acc[cur.house_work_name]) {
+        acc[cur.house_work_name] = {
+          count: 1,
+          profiles: [cur.profiles],
+        };
+      } else {
+        acc[cur.house_work_name].count++;
+        acc[cur.house_work_name].profiles.push(cur.profiles);
+      }
+      return acc;
+    }, {});
+    kajiStatistics.value = result;
+  };
 
-// 最大4つまでのアイコンを表示
-const getProfileAvatarUrl = (profiles: any) => {
-  return profiles.slice(0, 4);
-};
+  // アイコンの表示数の4を超えた場合、+4 moreと表示
+  const getProfiles = (profiles: any) => {
+    if (profiles.length <= 4) {
+      return "";
+    } else {
+      return ` + ${profiles.length - 4} more`;
+    }
+  };
 
-// レベルを取得
-const getNowLevel = (count: number, levelThreshold: number[]) => {
-  if (count < levelThreshold[0]) {
-    return "スタートサポーター";
-  } else if (count < levelThreshold[1]) {
-    return "ブロンズクリーナー";
-  } else if (count < levelThreshold[2]) {
-    return "シルバーアシスタント";
-  }
-  return "ゴールドマスター";
-};
+  // 最大4つまでのアイコンを表示
+  const getProfileAvatarUrl = (profiles: any) => {
+    return profiles.slice(0, 4);
+  };
 
-// 次のレベルを取得
-const getNextLevel = (count: number, levelThreshold: number[]) => {
-  if (count < levelThreshold[0]) {
-    return "ブロンズクリーナー";
-  } else if (count < levelThreshold[1]) {
-    return "シルバーアシスタント";
-  } else if (count < levelThreshold[2]) {
+  // レベルを取得
+  const getNowLevel = (count: number, levelThreshold: number[]) => {
+    if (count < levelThreshold[0]) {
+      return "スタートサポーター";
+    } else if (count < levelThreshold[1]) {
+      return "ブロンズクリーナー";
+    } else if (count < levelThreshold[2]) {
+      return "シルバーアシスタント";
+    }
     return "ゴールドマスター";
-  } else {
-    return "";
-  }
-};
+  };
 
-// 最大レベルに到達した場合、Trueを返す
-const isMaxLevel = (count: number, levelThreshold: number[]) => {
-  if (count >= levelThreshold[2]) {
-    return true;
-  }
-  return false;
-};
+  // 最大レベルに到達した場合、Trueを返す
+  const isMaxLevel = (count: number, levelThreshold: number[]) => {
+    if (count >= levelThreshold[2]) {
+      return true;
+    }
+    return false;
+  };
 
-// 次のレベルまでに必要な家事数を返す
-const nextLevel = (count: number, levelThreshold: number[]) => {
-  if (count < levelThreshold[0]) {
-    return levelThreshold[0] - count;
-  } else if (count < levelThreshold[1]) {
-    return levelThreshold[1] - count;
-  } else {
-    return levelThreshold[2] - count;
-  }
-};
+  // 次のレベルまでに必要な家事数を返す
+  const nextLevel = (count: number, levelThreshold: number[]) => {
+    if (count < levelThreshold[0]) {
+      return levelThreshold[0] - count;
+    } else if (count < levelThreshold[1]) {
+      return levelThreshold[1] - count;
+    } else {
+      return levelThreshold[2] - count;
+    }
+  };
 
-// 家事の達成度をパーセンテージで返す
-const percentage = (count: number, levelThreshold: number[]) => {
-  if (count < levelThreshold[0]) {
-    return ((levelThreshold[0] - count) / levelThreshold[0]) * 100 + "%";
-  } else if (count < levelThreshold[1]) {
-    return ((levelThreshold[1] - count) / levelThreshold[1]) * 100 + "%";
-  } else if (count < levelThreshold[2]) {
-    return ((levelThreshold[2] - count) / levelThreshold[2]) * 100 + "%";
-  } else {
-    return "100%";
-  }
-};
+  // 家事の達成度をパーセンテージで返す
+  const percentage = (count: number, levelThreshold: number[]) => {
+    if (count < levelThreshold[0]) {
+      return (1 - (levelThreshold[0] - count) / levelThreshold[0]) * 100 + "%";
+    } else if (count < levelThreshold[1]) {
+      return (1 - (levelThreshold[1] - count) / levelThreshold[1]) * 100 + "%";
+    } else if (count < levelThreshold[2]) {
+      return (1 - (levelThreshold[2] - count) / levelThreshold[2]) * 100 + "%";
+    } else {
+      return "100%";
+    }
+  };
 </script>
 
 <template>
@@ -202,12 +189,7 @@ const percentage = (count: number, levelThreshold: number[]) => {
                 />
               </p>
               <p class="text-sm">
-                {{
-                  getNextLevel(
-                    kajiStatistics[work.house_work_name]!.count,
-                    work.levelThreshold
-                  )
-                }}まであと
+                次のレベルまであと
                 <span class="text-lg font-bold text-indigo-500">
                   {{
                     nextLevel(
