@@ -36,6 +36,7 @@
 
   const client = useSupabaseClient();
   const kajiStatistics = ref([]) as any;
+  const showModal = ref(false);
 
   onMounted(() => {
     fetchKajisStatistic();
@@ -94,6 +95,7 @@
   <div class="flex flex-col items-center">
     <h1 class="text-2xl font-semibold mt-4">今日のみんなのがんばり👏</h1>
   </div>
+  <Senryu class=""  v-if="!showModal"/>
   <div 
     class="mx-4"
     v-for="work in houseWorkList" :key="work.label">
