@@ -59,6 +59,7 @@
 <script setup lang="ts">
   // supabaseからログアウト
   const client = useSupabaseClient();
+  const user = useSupabaseUser();
   import dayjs from "dayjs";
   import relativeTimePlugin from "dayjs/plugin/relativeTime";
 
@@ -80,13 +81,21 @@
         house_work_name,
         created_at,
         kaji_comment,
+        user_id,
         profiles (
         *
         )`
       )
       .order("created_at", { ascending: false });
+
+    const myUserId = user?.value!.id;
+    // userIdが自分のものでない場合、profiles.nameを「だれか」に上書き
+    data!.forEach((kaji: any) => {
+      if (kaji.profiles.id !== user?.value!.id) {
+        kaji.profiles.name = "だれか";
+      }
+    });
     kajis.value = data;
-    console.log(data);
   };
 
   // relativeTimeプラグインを有効化
