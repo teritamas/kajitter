@@ -2,7 +2,7 @@
   <nav class="flex flex-wrap items-center justify-between py-2 px-4 bg-white">
     <div class="w-auto lg:order-2 lg:w-1/5 lg:text-center">
       <a class="text-xl font-semibold text-gray-800 font-heading" href="#">
-        かじったー
+        Kajitter
       </a>
     </div>
     <div class="block lg:hidden">
@@ -96,26 +96,26 @@
 </template>
 
 <script setup lang="ts">
-const emit = defineEmits(["signOut"]);
+  const emit = defineEmits(["signOut"]);
 
-const props = defineProps({
-  userName: {
-    type: String,
-    required: true,
-  },
-  userIcon: {
-    type: String,
-    required: true,
-  },
-});
-const isVisible = ref(false); // 表示・非表示の状態管理
+  const props = defineProps({
+    userName: {
+      type: String,
+      required: true,
+    },
+    userIcon: {
+      type: String,
+      required: true,
+    },
+  });
+  const isVisible = ref(false); // 表示・非表示の状態管理
 
-// トグル関数
-const toggleVisibility = () => {
-  isVisible.value = !isVisible.value; // 表示・非表示を切り替え
-};
+  // トグル関数
+  const toggleVisibility = () => {
+    isVisible.value = !isVisible.value; // 表示・非表示を切り替え
+  };
 
-const signOut = () => {
-  emit("signOut");
-};
+  const signOut = () => {
+    emit("signOut");
+  };
 </script>

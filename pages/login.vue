@@ -1,36 +1,42 @@
 <script setup lang="ts">
-const runtimeConfig = useRuntimeConfig();
-const supabase = useSupabaseClient();
+  const runtimeConfig = useRuntimeConfig();
+  const supabase = useSupabaseClient();
 
-const redirectUrl = `${runtimeConfig.public.redirectUrl as string}`;
+  const redirectUrl = `${runtimeConfig.public.redirectUrl as string}`;
 
-const signInWithGithub = async () => {
-  const { error } = await supabase.auth.signInWithOAuth({
-    provider: "github",
-    options: {
-      redirectTo: redirectUrl,
-    },
-  });
-  if (error) console.log(error);
-};
-const signInWithGoogle = async () => {
-  const { error } = await supabase.auth.signInWithOAuth({
-    provider: "google",
-    options: {
-      redirectTo: redirectUrl,
-    },
-  });
-  if (error) console.log(error);
-};
+  const signInWithGithub = async () => {
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: "github",
+      options: {
+        redirectTo: redirectUrl,
+      },
+    });
+    if (error) console.log(error);
+  };
+  const signInWithGoogle = async () => {
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        redirectTo: redirectUrl,
+      },
+    });
+    if (error) console.log(error);
+  };
 </script>
 <template>
   <div
     class="mx-auto min-h-[300px] mt-10 flex flex-col justify-center w-full max-w-md px-4 py-8 bg-white rounded-lg shadow sm:px-6 md:px-8 lg:px-10"
   >
+    <div
+      class="flex items-center justify-center w-16 h-16 mb-4 mx-auto bg-gray-100 rounded-full"
+    >
+      <img src="/img/kajitter.png" alt="" />
+    </div>
+
     <h1
       class="mb-4 text-center text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl"
     >
-      かじったー
+      Kajitter
     </h1>
 
     <div class="self-center font-light text-gray-600">
