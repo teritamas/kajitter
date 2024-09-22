@@ -14,14 +14,14 @@ const props = defineProps<{
 
 // レベルに応じたクラスを計算
 const levelClass = computed(() => {
-  if (props.level === "マスター") {
-    return "bg-gray-700 text-gray-300 text-sm font-medium me-2 px-2.5 py-0.5 rounded"; // master
-  } else if (props.level === "上級") {
-    return "bg-purple-100 text-purple-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded"; // 上級
-  } else if (props.level === "中級") {
-    return "bg-yellow-100 text-yellow-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded"; // 中級
+  if (props.level === "ゴールドマスター") {
+    return "bg-yellow-200 text-yellow-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded";
+  } else if (props.level === "シルバーアシスタント") {
+    return "bg-gray-100 text-gray-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded"; // スタートサポーター
+  } else if (props.level === "ブロンズクリーナー") {
+    return "bg-yellow-900 text-yellow-300 text-sm font-medium me-2 px-2.5 py-0.5 rounded";
   } else {
-    return "bg-gray-100 text-gray-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded"; // 初級
+    return "bg-blue-100 text-blue-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded"; // master
   }
 });
 </script>
