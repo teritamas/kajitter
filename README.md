@@ -10,12 +10,14 @@
 
 Kajitter は家事を世界にオープンにし、みんなで家事をするモチベーションを高め合う SNS です。
 
+プレゼン資料はこちら
+[![Slide](docs/slide.png)](https://www.canva.com/design/DAGRbp6qSv8/ovuKglgZuEpe9BNKSTPtIw/view?utm_content=DAGRbp6qSv8&utm_campaign=designshare&utm_medium=link&utm_source=editor)
+
 ## 全体構成
 
 本アプリケーションは Vercel にデプロイされており、データベース/認証には Supabase を使用しています。
 
 全体構成は以下の通りです。
-
 ![構成図](docs/arch.png)
 
 ### 技術スタック
