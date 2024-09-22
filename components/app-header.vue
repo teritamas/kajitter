@@ -1,9 +1,9 @@
 <template>
   <nav class="flex flex-wrap items-center justify-between py-2 px-4 bg-white">
     <div class="w-auto lg:order-2 lg:w-1/5 lg:text-center">
-      <a class="text-xl font-semibold text-gray-800 font-heading" href="#">
-        Kajitter
-      </a>
+      <div class="flex items-center justify-center w-28 mx-auto">
+        <img src="/img/kajitter.png" alt="" />
+      </div>
     </div>
     <div class="block lg:hidden">
       <a href="#" class="relative block" @click="toggleVisibility">

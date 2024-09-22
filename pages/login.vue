@@ -27,17 +27,9 @@
   <div
     class="mx-auto min-h-[300px] mt-10 flex flex-col justify-center w-full max-w-md px-4 py-8 bg-white rounded-lg shadow sm:px-6 md:px-8 lg:px-10"
   >
-    <div
-      class="flex items-center justify-center w-16 h-16 mb-4 mx-auto bg-gray-100 rounded-full"
-    >
+    <div class="flex items-center justify-center w-80 mb-8 mx-auto">
       <img src="/img/kajitter.png" alt="" />
     </div>
-
-    <h1
-      class="mb-4 text-center text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl"
-    >
-      Kajitter
-    </h1>
 
     <div class="self-center font-light text-gray-600">
       みんなの家事がつながる場所🧹🧺🗾
