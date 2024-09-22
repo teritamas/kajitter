@@ -59,7 +59,7 @@ html {
   width: 100vw; /* 幅を100vhに設定 */
   background-color: white; /* 背景色を指定 */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* 影を追加 */
-  z-index: 1000; /* 他の要素の上に表示 */
+  z-index: 20; /* 他の要素の上に表示 */
 }
 
 main {
@@ -76,6 +76,6 @@ main {
   width: 100vw; /* 幅を100vhに設定 */
   background-color: white; /* 背景色を指定 */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* 影を追加 */
-  z-index: 1000; /* 他の要素の上に表示 */
+  z-index: 20; /* 他の要素の上に表示 */
 }
 </style>
